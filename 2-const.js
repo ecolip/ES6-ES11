@@ -25,10 +25,10 @@
 // ARRTEST.push(4)
 // console.log(ARRTEST)
 
-const PERSON = {
-  name: 'zhishouh',
-  age: 20,
-  hobby: 'football'
-}
-PERSON.age = 19
-console.log(PERSON.age)
+// const PERSON = {
+//   name: 'zhishouh',
+//   age: 20,
+//   hobby: 'football'
+// }
+// PERSON.age = 19
+// console.log(PERSON.age)

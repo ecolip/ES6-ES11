@@ -15,7 +15,7 @@
 // console.log(name) // Cannot access 'name' before initialization
 // const name = 'zhishouh'
 
-// 4、不用谢作用域链
+// 4、不影响作用域链
 // {
 //   let name = 'zhishouh'
 //   function person () {
