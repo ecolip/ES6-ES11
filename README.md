@@ -1,4 +1,4 @@
-### ES6-ES11**
+### ES6-ES11
 
 ------
 
@@ -672,5 +672,134 @@ class SmartPhone extends Phone {
 const xiaomi = new SmartPhone('xiaomi', 1999, '黑色', '5.5inci')
 console.log(xiaomi.call())
 xiaomi.rams = 256
+```
+
+
+
+##### 数值扩展
+
+```javascript
+// 1、Number.EPSILON 最小精度
+function equal (a, b) {
+  if (Math.abs(a - b) < Number.EPSILON) {
+    return true
+  } else {
+    return false
+  }
+}
+console.log(equal(0.1 + 0.2, 0.3))
+
+// 2、Number.isFinite 检测是否为有限数
+console.log(Number.isFinite(100))
+console.log(Number.isFinite(Infinity))
+
+// 3、进制
+const b = 0b1010 // 二进制
+const o = 0o777 // 八进制
+const d = 100 // 十进制
+const x = 0xff // 十六进制
+console.log(b)
+console.log(o)
+console.log(d)
+console.log(x)
+
+// 4、Number.isNaN 检测是否为非数值
+console.log(Number.isNaN(10))
+
+// 5、Number.parstInt Number.parstFloat 转化为数值
+console.log(Number.parseInt('1234l'))
+console.log(Number.parseFloat('1234.1l'))
+
+// 6、Number.isInterger判断一个数是否为整数
+console.log(Number.isInteger(10.1))
+
+// 7、Math.trunc将数值中的小数抹掉
+console.log(Math.trunc(10.2))
+
+// 8、Math.sign判断正 负 0
+console.log(Math.sign(10))
+console.log(Math.sign(0))
+console.log(Math.sign(-10))
+
+```
+
+
+
+##### 对象方法扩展
+
+```javascript
+// 1、Object.is 判断两个值是否完全相等
+console.log(Object.is(10, 20))
+
+// 2、Object.assign 对象合并
+const obj1 = {
+  name: 'username'
+}
+const obj2 = {
+  name: 'zhishouh'
+}
+console.log(Object.assign(obj1, obj2))
+
+// 3、Object.setPrototypeOf 设置原型对象
+const gd = {
+  name: '广东'
+}
+const place = {
+  places: ['广州', '深圳', '汕尾', '海丰']
+}
+Object.setPrototypeOf(gd, place)
+console.log(gd.places)
+
+```
+
+
+
+##### 模块化
+
+```js
+  <script type="module">
+    // 1、普通方式导入
+    import * as m1 from './23-模块化js/m1.js'
+    console.log(m1)
+    import * as m2 from './23-模块化js/m2.js'
+    console.log(m2)
+    import * as m3 from './23-模块化js/m3.js'
+    console.log(m3)
+    m3.default.video()
+
+    // 2、解构赋值导入
+    import {name, hobby} from './23-模块化js/m1.js'
+    import {name as LH, game} from './23-模块化js/m2.js'
+    import {default as m3} from './23-模块化js/m3.js'
+    console.log(name,hobby)
+    console.log(LH,game)
+    console.log(m3)
+
+    // 3、简便形式 -- 只针对默认
+    import m3 from './23-模块化js/m3.js'
+    console.log(m3)
+  </script>
+
+// m1.js
+export const name = 'zhishouh'
+export function hobby () {
+  console.log('我有很多兴趣！')
+}
+// m2.js
+const name = 'zhishouh'
+function game () {
+  console.log('我有很多游戏！')
+}
+export { name, game }
+
+// m3.js
+// 默认暴露
+export default {
+  name: 'zhishouh',
+  video: function (params) {
+    console.log('dada')
+  }
+}
+
 ```
 

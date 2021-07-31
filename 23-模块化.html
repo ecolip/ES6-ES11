@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>模块化</title>
+</head>
+<body>
+  <script type="module">
+    // 1、普通方式导入
+    // import * as m1 from './23-模块化js/m1.js'
+    // console.log(m1)
+    // import * as m2 from './23-模块化js/m2.js'
+    // console.log(m2)
+    // import * as m3 from './23-模块化js/m3.js'
+    // console.log(m3)
+    // m3.default.video()
+
+    // 2、解构赋值导入
+    // import {name, hobby} from './23-模块化js/m1.js'
+    // import {name as LH, game} from './23-模块化js/m2.js'
+    // import {default as m3} from './23-模块化js/m3.js'
+    // console.log(name,hobby)
+    // console.log(LH,game)
+    // console.log(m3)
+
+    // 3、简便形式 -- 只针对默认
+    import m3 from './23-模块化js/m3.js'
+    console.log(m3)
+  </script>
+
+</body>
+</html>
