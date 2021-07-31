@@ -415,3 +415,262 @@ iterator.next()
 iterator.next()
 ```
 
+
+
+##### *Promise*
+
+```javascript
+const p = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    const n = Math.round(Math.random() * 100)
+    if (n <= 50) {
+      resolve(n)
+    } else {
+      reject(n)
+    }
+  }, 1000)
+})
+p.then(value => {
+  console.log(`成功：${value}`)
+}, reason => {
+  console.log(`失败：${reason}`)
+})
+```
+
+
+
+#####  Promise读取文件
+
+```javascript
+引入fs模块
+const fs = require('fs')
+
+调用fs读取文件
+fs.readFile('./resource/content.txt', (err, data) => {
+  if (err) throw err
+  console.log(data.toString())
+})
+
+使用Promise封装
+const p = new Promise((resolve, reject) => [
+  fs.readFile('./resource/content.txt', (err, data) => {
+    if (err) reject(err)
+    resolve(data.toString())
+  })
+])
+p.then(value => {
+  console.log(value)
+}, reason => {
+  console.log('读取失败!')
+})
+
+```
+
+
+
+##### Promise封装AJAX
+
+```javascript
+const p = new Promise((resolve, reject) => {
+  // 接口地址 https://api.apiopen.top/getJoke
+  const xhr = new XMLHttpRequest()
+  xhr.open()
+  xhr.send()
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState === 4) {
+      if (xhr.status >= 200 && xhr.status < 300) {
+        resolve(xhr.status)
+      } else {
+        reject(xhr.status)
+      }
+    }
+  }
+})
+
+p.then(value => {
+  console.log(value)
+}, reason => {
+  console.error(reason)
+})
+
+```
+
+
+
+##### Promise读取多个文件
+
+```javascript
+const fs = require('fs')
+const p = new Promise((resolve, reject) => {
+  fs.readFile('./resource/1.txt', (err, data) => {
+    if (err) reject(err)
+    resolve(data)
+  })
+})
+
+p.then(value => {
+  return new Promise((resolve, reject) => {
+    fs.readFile('./resource/2.txt', (err, data) => {
+      if (err) reject(err)
+      resolve([value, data])
+    })
+  })
+}).then(value => {
+  return new Promise((resolve, reject) => {
+    fs.readFile('./resource/3.txt', (err, data) => {
+      if (err) reject(err)
+      value.push(data)
+      resolve(value)
+    })
+  })
+}).then(value => {
+  console.log(value.toString())
+})
+```
+
+
+
+##### Set集合
+
+```javascript
+// set集合
+const s = new Set()
+console.log(s, typeof s)
+
+const s2 = new Set([1, 2, 3, 4, 5, 6, 1, 2])
+console.log(s2)
+
+// 元素个数
+console.log(s2.size)
+
+// 添加元素
+s2.add(7)
+console.log(s2)
+
+// 删除元素
+s2.delete(2)
+console.log(s2)
+
+// 检测元素
+console.log(s2.has(3))
+
+// 清空元素
+// s2.clear()
+// console.log(s2)
+
+// 遍历数据
+for (const v of s2) {
+  console.log(v)
+}
+```
+
+```javascript
+const arr1 = [1, 2, 3, 4, 5, 1]
+const arr2 = [3, 4, 5]
+
+// 交集
+const result = [...new Set(arr1)].filter(item => {
+  const s2 = new Set(arr2)
+  if (s2.has(item)) {
+    return true
+  } else {
+    return false
+  }
+})
+const result = [...new Set(arr1)].filter(item => new Set(arr2).has(item))
+console.log(result)
+
+// 并集
+const union = [...new Set([...arr1, ...arr2])]
+console.log(union)
+
+// 差集
+const diff = [...new Set(arr1)].filter(item => !(new Set(arr2).has(item)))
+console.log(diff)
+```
+
+
+
+##### Map数据结构
+
+```javascript
+// Map
+const m = new Map()
+
+// 添加元素
+m.set('姓名', '黄智守')
+m.set('兴趣', function () {
+  console.log('看综艺！')
+})
+const key = {
+  test: 'testtt'
+}
+m.set(key, [1, 2, 3])
+console.log(m)
+
+// 删除
+m.delete(key)
+console.log(m)
+
+// 获取
+console.log(m.get('姓名'))
+
+// 清空
+m.clear()
+console.log(m)
+
+// 遍历
+for (const v of m) {
+  console.log(v)
+}
+```
+
+
+
+##### class类定义
+
+```javascript
+class Phone {
+  constructor (name, price) {
+    this.name = name
+    this.price = price
+  }
+
+  call () {
+    console.log('我可以拨打电话！')
+  }
+}
+class SmartPhone extends Phone {
+  constructor (name, price, color, size) {
+    super(name, price)
+    this.color = color
+    this.size = size
+  }
+
+  watch () {
+    console.log('我可以看剧')
+  }
+
+  playGame () {
+    console.log('我可以打游戏')
+  }
+
+  call () {
+    console.log('我可以视频通话')
+  }
+
+  get rams () {
+    console.log('内存128g')
+    return 1
+  }
+
+  set rams (newVal) {
+    console.log(`现内存${newVal}g`)
+  }
+}
+
+const xiaomi = new SmartPhone('xiaomi', 1999, '黑色', '5.5inci')
+console.log(xiaomi.call())
+xiaomi.rams = 256
+```
+
