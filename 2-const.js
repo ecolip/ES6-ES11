@@ -1,4 +1,4 @@
-// cosnt 声明常量
+// const 声明常量
 
 // 1、一定要赋初始值
 // const NAME = 'ZHISHOUH'
