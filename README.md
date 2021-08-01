@@ -817,12 +817,132 @@ console.log(arr.includes('A'))
 console.log(arr.includes('a'))
 ```
 
-
-
-##### [**]--幂远算
+##### [**] -- 幂远算
 
 ```javascript
 console.log(2 ** 10)
 console.log(Math.pow(2, 10))
+```
+
+
+
+#### ES8
+
+##### async函数和await表达式
+
+```javascript
+const p = new Promise((resolve, reject) => {
+  resolve('成功了！')
+  // reject('失败了！')
+})
+
+async function main () {
+  try {
+    const result = await p
+    console.log(result)
+  } catch (e) {
+    console.log(e)
+  }
+}
+main()
+```
+
+
+
+##### async与await读取多个文件
+
+```javascript
+
+// 引入fs模块
+const fs = require('fs')
+
+function one () {
+  return new Promise((resolve, reject) => {
+    fs.readFile('./resource/1.txt', (err, data) => {
+      if (err) reject(err)
+      resolve(data)
+    })
+  })
+}
+
+function two () {
+  return new Promise((resolve, reject) => {
+    fs.readFile('./resource/2.txt', (err, data) => {
+      if (err) reject(err)
+      resolve(data)
+    })
+  })
+}
+
+function three () {
+  return new Promise((resolve, reject) => {
+    fs.readFile('./resource/3.txt', (err, data) => {
+      if (err) reject(err)
+      resolve(data)
+    })
+  })
+}
+
+async function main () {
+  const o = await one()
+  const t = await two()
+  const h = await three()
+  console.log(o.toString())
+  console.log(t.toString())
+  console.log(h.toString())
+}
+main()
+```
+
+
+
+##### async与await-AJAX请求
+
+```javascript
+function sendAJAX (url) {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest()
+    xhr.open('GET', url)
+    xhr.send()
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState === 4) {
+        if (xhr.status >= 200 && xhr.status < 300) {
+          resolve(xhr.response)
+        } else {
+          reject(xhr.status)
+        }
+      }
+    }
+  })
+}
+
+// Promise.then方法调用
+sendAJAX('https://restapi.amap.com/v3/weather/weatherInfo?parameters').then(value => {
+  console.log(value)
+}, reason => {
+  console.log(reason)
+})
+
+// async与await调用
+async function main () {
+  const aj = await sendAJAX('https://restapi.amap.com/v3/weather/weatherInfo?parameters')
+  console.log(aj)
+}
+main()
+```
+
+
+
+##### ES8对象方法扩展
+
+```javascript
+// ES8对象方法扩展
+const person = {
+  name: 'zhishouh',
+  hobby: ['sing', 'dance', 'rap', 'backetball']
+}
+console.log(Object.keys(person))
+console.log(Object.values(person))
+console.log(Object.entries(person))
 ```
 
