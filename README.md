@@ -2,6 +2,8 @@
 
 ------
 
+#### ES6
+
 ##### let声明变量
 
 1. ```javascript
@@ -801,5 +803,26 @@ export default {
   }
 }
 
+```
+
+
+
+#### es7
+
+##### includes -- 检测元素是否存在数组，返回布尔值
+
+```javascript
+const arr = ['A', 'B', 'C', 'D']
+console.log(arr.includes('A'))
+console.log(arr.includes('a'))
+```
+
+
+
+##### [**]--幂远算
+
+```javascript
+console.log(2 ** 10)
+console.log(Math.pow(2, 10))
 ```
 
