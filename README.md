@@ -944,5 +944,7 @@ const person = {
 console.log(Object.keys(person))
 console.log(Object.values(person))
 console.log(Object.entries(person))
+// 对象属性的描述对象
+console.log(Object.getOwnPropertyDescriptors(person))
 ```
 
