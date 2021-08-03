@@ -4,11 +4,7 @@
 
 #### 目录
 
-[let声明变量](let声明变量)
-
-[const 声明常量](const 声明常量)
-
-[解构赋值](const 声明常量)
+[let声明变量](#jump)
 
 ------
 
@@ -16,7 +12,7 @@
 
 #### ES6
 
-##### let声明变量
+##### <span id="jump">let声明变量</span>
 
 1. ```javascript
    不能重复声明
