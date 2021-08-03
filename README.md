@@ -4,7 +4,73 @@
 
 #### 目录
 
-[let声明变量](#jump)
+ES6
+
+[let声明变量](#ES6-1)
+
+[const 声明常量](#ES6-2)
+
+[解构赋值](#ES6-3)
+
+[字符串模板](#ES6-4)
+
+[对象的简化写法](#ES6-5)
+
+[箭头函数](#ES6-6)
+
+[函数参数的默认值](#ES6-7)
+
+[rest参数](#ES6-8)
+
+[扩展运算符](#ES6-9)
+
+[Symbol](#ES6-10)
+
+[迭代器](#ES6-11)
+
+[生成器](#ES6-12)
+
+[Promise](#ES6-13)
+
+[Promise读取文件](#ES6-14)
+
+[Promise封装AJAX](#ES6-15)
+
+[Promise读取多个文件](#ES6-16)
+
+[Set集合](#ES6-17)
+
+[Map数据结构](#ES6-18)
+
+[class类定义](#ES6-19)
+
+[数值扩展](#ES6-20)
+
+[对象方法扩展](#ES6-21)
+
+[模块化](#ES6-22)
+
+
+
+ES7
+
+[includes](#ES7-1)
+
+
+
+[幂远算](#ES7-2)
+
+
+
+ES8
+
+[async函数和await表达式](#ES8-1)
+
+[async与await读取多个文件](#ES8-2)
+
+[async与await-AJAX请求](#ES8-3)
+
+[ES8对象方法扩展](#ES8-4)
 
 ------
 
@@ -12,7 +78,7 @@
 
 #### ES6
 
-##### <span id="jump">let声明变量</span>
+##### <span id="ES6-1">let声明变量</span>
 
 1. ```javascript
    不能重复声明
@@ -48,7 +114,7 @@
 
 
 
-##### const 声明常量
+#####  <span id="ES6-2">const 声明常量</span>
 
 1. ```javascript
    一定要赋初始值
@@ -95,7 +161,7 @@
 
 
 
-##### 解构赋值
+#####  <span id="ES6-3">解构赋值</span>
 
 1. ```javascript
    数组解构
@@ -122,7 +188,7 @@
 
 
 
-##### 字符串模板 【``】
+#####  <span id="ES6-4">字符串模板 【``】</span>
 
 1. ```javascript
    声明
@@ -151,7 +217,7 @@
 
    
 
-##### 对象的简化写法
+#####  <span id="ES6-5">对象的简化写法</span>
 
 ```javascript
 const NAME = 'zhishouh'
@@ -170,7 +236,7 @@ console.log(ALL)
 
 
 
-##### 箭头函数
+#####  <span id="ES6-6">箭头函数</span>
 
 ```javascript
 const fn = (a, b) => {
@@ -237,7 +303,7 @@ console.log(result)
 
    
 
-##### 函数参数的默认值
+#####  <span id="ES6-7">函数参数的默认值</span>
 
 1. ```javascript
    形参初始值
@@ -267,7 +333,7 @@ console.log(result)
 
 
 
-##### rest参数 -- 用于获取函数的实参，代替arguments
+#####  <span id="ES6-8">rest参数 -- 用于获取函数的实参，代替arguments</span>
 
 1. ```javascript
    ES5 获取实参的方式
@@ -287,7 +353,7 @@ console.log(result)
 
    
 
-##### 扩展运算符 【...】 能将数组转化为逗号分隔符的参数序列
+#####  <span id="ES6-9">扩展运算符 【...】 能将数组转化为逗号分隔符的参数序列</span>
 
 ```javascript
 const arr = ['H', 'T', 'T', 'P']
@@ -318,7 +384,7 @@ fn(...arr) // [Arguments] { '0': 'H', '1': 'T', '2': 'T', '3': 'P' }
 
 
 
-##### Symbol--原始数据类型
+#####  <span id="ES6-10">Symbol--原始数据类型</span>
 
 1. ```javascript
    创建symbol
@@ -355,7 +421,7 @@ fn(...arr) // [Arguments] { '0': 'H', '1': 'T', '2': 'T', '3': 'P' }
 
 
 
-##### 迭代器
+#####  <span id="ES6-11">迭代器</span>
 
 1. ```javascript
    const arr = [1, 2, 3]
@@ -387,12 +453,11 @@ fn(...arr) // [Arguments] { '0': 'H', '1': 'T', '2': 'T', '3': 'P' }
    for (const player of club) {
      console.log(player)
    }
-   
    ```
-
+   
    
 
-##### 生成器
+#####  <span id="ES6-12">生成器</span>
 
 ```javascript
 function one () {
@@ -427,7 +492,7 @@ iterator.next()
 
 
 
-##### *Promise*
+#####  <span id="ES6-13">Promise</span>
 
 ```javascript
 const p = new Promise((resolve, reject) => {
@@ -449,7 +514,7 @@ p.then(value => {
 
 
 
-#####  Promise读取文件
+#####   <span id="ES6-14">Promise读取文件</span>
 
 ```javascript
 引入fs模块
@@ -473,12 +538,11 @@ p.then(value => {
 }, reason => {
   console.log('读取失败!')
 })
-
 ```
 
 
 
-##### Promise封装AJAX
+#####  <span id="ES6-15">Promise封装AJAX</span>
 
 ```javascript
 const p = new Promise((resolve, reject) => {
@@ -502,12 +566,11 @@ p.then(value => {
 }, reason => {
   console.error(reason)
 })
-
 ```
 
 
 
-##### Promise读取多个文件
+#####  <span id="ES6-16">Promise读取多个文件</span>
 
 ```javascript
 const fs = require('fs')
@@ -540,7 +603,7 @@ p.then(value => {
 
 
 
-##### Set集合
+#####  <span id="ES6-17">Set集合</span>
 
 ```javascript
 // set集合
@@ -601,7 +664,7 @@ console.log(diff)
 
 
 
-##### Map数据结构
+#####  <span id="ES6-18">Map数据结构</span>
 
 ```javascript
 // Map
@@ -637,7 +700,7 @@ for (const v of m) {
 
 
 
-##### class类定义
+##### <span id="ES6-19">class类定义</span>
 
 ```javascript
 class Phone {
@@ -686,7 +749,7 @@ xiaomi.rams = 256
 
 
 
-##### 数值扩展
+##### <span id="ES6-20">数值扩展</span>
 
 ```javascript
 // 1、Number.EPSILON 最小精度
@@ -735,7 +798,7 @@ console.log(Math.sign(-10))
 
 
 
-##### 对象方法扩展
+#####  <span id="ES6-21">对象方法扩展</span>
 
 ```javascript
 // 1、Object.is 判断两个值是否完全相等
@@ -764,7 +827,7 @@ console.log(gd.places)
 
 
 
-##### 模块化
+#####  <span id="ES6-22">模块化</span>
 
 ```js
   <script type="module">
@@ -817,7 +880,7 @@ export default {
 
 #### es7
 
-##### includes -- 检测元素是否存在数组，返回布尔值
+#####  <span id="ES7-1">includes -- 检测元素是否存在数组，返回布尔值</span>
 
 ```javascript
 const arr = ['A', 'B', 'C', 'D']
@@ -825,7 +888,7 @@ console.log(arr.includes('A'))
 console.log(arr.includes('a'))
 ```
 
-##### [**] -- 幂远算
+#####  <span id="ES7-2">【**】 -- 幂远算</span>
 
 ```javascript
 console.log(2 ** 10)
@@ -836,7 +899,7 @@ console.log(Math.pow(2, 10))
 
 #### ES8
 
-##### async函数和await表达式
+#####  <span id="ES8-1">async函数和await表达式</span>
 
 ```javascript
 const p = new Promise((resolve, reject) => {
@@ -857,7 +920,7 @@ main()
 
 
 
-##### async与await读取多个文件
+#####  <span id="ES8-2">async与await读取多个文件</span>
 
 ```javascript
 
@@ -904,7 +967,7 @@ main()
 
 
 
-##### async与await-AJAX请求
+#####  <span id="ES8-3">async与await-AJAX请求</span>
 
 ```javascript
 function sendAJAX (url) {
@@ -941,7 +1004,7 @@ main()
 
 
 
-##### ES8对象方法扩展
+#####  <span id="ES8-4">ES8对象方法扩展</span>
 
 ```javascript
 // ES8对象方法扩展
