@@ -66,6 +66,42 @@ ES8
 
 4、[ES8对象方法扩展](#ES8-4)
 
+ES9
+
+1、[对象-rest参数和扩展运算符](#ES9-1)
+
+2、[正则扩展-命名捕获分组](#ES9-2)
+
+3、[正则扩展-反向断言](#ES9-3)
+
+4、[正则扩展-dotAll模式](#ES9-4)
+
+ES10
+
+1、[Object.formEntries创建对象](#ES10-1)
+
+2、[字符串的扩展方法](#ES10-2)
+
+3、[数组的扩展方法](#ES10-3)
+
+4、[Symbol扩展](#ES10-4)
+
+ES11
+
+1、[私有属性](#ES11-1)
+
+2、[Promise.allSettled](#ES11-2)
+
+3、[String-prototype.matchAll](#ES11-3)
+
+4、[可选链操作符](#ES11-4)
+
+5、[动态import](#ES11-5)
+
+6、[BigInt类型](#ES11-6)
+
+7、[globalThis](#ES11-7)
+
 ------
 
 
@@ -1011,5 +1047,305 @@ console.log(Object.values(person))
 console.log(Object.entries(person))
 // 对象属性的描述对象
 console.log(Object.getOwnPropertyDescriptors(person))
+```
+
+
+
+#### ES9
+
+##### <span id="ES9-1">对象-rest参数和扩展运算符</span>
+
+```javascript
+// rest参数
+function main ({ host, prot, ...user }) {
+  console.log(host)
+  console.log(prot)
+  console.log(user)
+}
+main({
+  host: 'localhost',
+  prot: 3306,
+  username: 'admin',
+  password: 'admin',
+  other: 'nill'
+})
+
+// 对象-扩展运算符
+const a = {
+  one: '甲'
+}
+const b = {
+  two: '乙'
+}
+const c = {
+  three: '丙'
+}
+const d = {
+  four: '丁'
+}
+const all = {
+  ...a,
+  ...b,
+  ...c,
+  ...d
+}
+console.log(all)
+```
+
+
+
+##### <span id="ES9-2">正则扩展-命名捕获分组</span>
+
+```javascript
+// 声明一个字符串
+const str = '<a href="www.baidu.com">百度</a>'
+// // 声明正则表达式
+const reg = /<a href="(.*)">(.*)<\/a>/
+
+console.log(reg.exec(str))
+console.log(reg.exec(str)[1])
+console.log(reg.exec(str)[2])
+
+// 命名捕获分组
+const str = '<a href="www.baidu.com">百度</a>'
+// 声明正则表达式
+const reg = /<a href="(?<url>.*)">(?<text>.*)<\/a>/
+const result = reg.exec(str)
+console.log(result)
+console.log(result.groups.url)
+console.log(result.groups.text)
+```
+
+
+
+##### <span id="ES9-3">正则扩展-反向断言</span>
+
+```javascript
+const str = 'es666啊啊啊555啦啦啦'
+// 正向断言 -- 提取出555
+const reg1 = /\d+(?=啦)/
+const result1 = reg1.exec(str)
+console.log(result1)
+
+// 反向断言
+const reg2 = /(?<=啊)\d+/
+const result2 = reg2.exec(str)
+console.log(result2)
+
+```
+
+
+
+##### <span id="ES9-4">正则扩展-dotAll模式</span>
+
+```javascript
+const str = `
+  <ul>
+    <li>
+      <a>《肖申克的救赎》</a>
+      <p>上映日期：1994-09-10</p>
+    </li>
+    <li>
+      <a>《阿甘正传》</a>
+      <p>上映日期：1994-07-06</p>
+    </li>
+  </ul>
+`
+// const reg = /<li>\s+<a>(.*?)<\/a>\s+<p>(.*?)<\/p>/
+const reg = /<li>.*?<a>(.*?)<\/a>.*?<p>(.*?)<\/p>/gs
+// const result = reg.exec(str)
+// console.log(result)
+let result
+const data = []
+while (result = reg.exec(str)) {
+  data.push({ title: result[1], time: result[2] })
+}
+console.log(data)
+```
+
+
+
+#### ES10
+
+##### <span id="ES10-1">Object.formEntries创建对象</span>
+
+```javascript
+// 二维数组
+const result = Object.fromEntries([
+  ['name', 'zhihsouh'],
+  ['hobby', 'football']
+])
+console.log(result) // { name: 'zhihsouh', hobby: 'football' }
+
+// Map
+const m = new Map()
+m.set('name', 'zhishouh')
+m.set('hobby', 'football')
+const result2 = Object.fromEntries(m)
+console.log(result2) // { name: 'zhihsouh', hobby: 'football' }
+```
+
+
+
+##### <span id="ES10-2">字符串的扩展方法</span>
+
+```javascript
+const str = '    zhishouh    '
+console.log(str)
+console.log(str.trim())
+console.log(str.trimStart())
+console.log(str.trimEnd())
+```
+
+
+
+##### <span id="ES10-3">数组的扩展方法</span>
+
+```javascript
+const arr = [1, 2, 3, 4, [5, 6, [7, 8, 9]]]
+console.log(arr.flat(2))
+
+const arr2 = [1, 2, 3, 4]
+const result = arr2.flatMap(item => [item * 10])
+console.log(result)
+```
+
+
+
+##### <span id="ES10-4">Symbol扩展</span>
+
+```javascript
+const s = Symbol('黄智守')
+console.log(s.description)
+```
+
+
+
+#### ES11
+
+##### <span id="ES11-1">私有属性</span>
+
+```javascript
+class Person {
+  // 公有属性
+  name
+  // 私有属性
+  #age
+  #weight
+  constructor(name,age,weight){
+    this.name = name
+    this.#age = age
+    this.#weight = weight
+  }
+  intro(){
+    console.log(this.name)
+    console.log(this.#age)
+    console.log(this.#weight)
+  }
+}
+
+const p = new Person('zhishouh',19,150)
+// console.log(p.name)
+// console.log(p.#age)
+// console.log(p.#weight)
+p.intro()
+```
+
+
+
+##### <span id="ES11-2">Promise.allSettled</span>
+
+```javascript
+const p1 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('成功-1')
+  }, 1000)
+})
+const p2 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('成功-2')
+  }, 1000)
+})
+const result = Promise.allSettled([p1, p2]).then(res => console.log(res))
+console.log(result)
+```
+
+
+
+##### <span id="ES11-3"> String-prototype.matchAll</span>
+
+```javascript
+const str = `
+  <ul>
+    <li>
+      <a>肖申克的救赎</a>
+      <p>豆瓣评分：9.0</p>
+    </li>
+    <li>
+      <a>阿甘正传</a>
+      <p>豆瓣评分：9.0</p>
+    </li>
+  </ul>
+`
+// 声明正则
+const reg = /<li>.*?<a>(.*?)<\/a>.*?<p>(.*?)<\/p>/gs
+
+const result = str.matchAll(reg)
+console.log(result)
+// for...of遍历
+// for (const r of result) {
+//   console.log(r)
+// }
+// ...扩展运算符
+const arr = [...result]
+console.log(arr)
+```
+
+
+
+##### <span id="ES11-4">可选链操作符</span>
+
+```javascript
+function mian (config) {
+  const dbHost = config?.db?.host
+  console.log(dbHost)
+}
+mian({
+  db: {
+    host: '127.0.0.1',
+    prot: 8800
+  },
+  cache: {
+    host: '127.0.0.2',
+    username: 'admin'
+  }
+})
+```
+
+
+
+##### <span id="ES11-5">动态import</span>
+
+```
+import() -> 返回Promise对象
+```
+
+
+
+##### <span id="ES11-6">BigInt类型</span>
+
+```javascript
+const n = 123n
+
+const num = 123
+console.log(BigInt(num)) // 123n
+```
+
+
+
+##### <span id="ES11-7">全局对象globalThis</span>
+
+```javascript
+console.log(globalThis) //指向全局对象
 ```
 
