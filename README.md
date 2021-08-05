@@ -197,10 +197,10 @@ ES11
    数组解构
    const TEST = ['甲', '乙', '丙', '丁']
    let [a, b, c, d] = TEST
-   console.log(a)
-   console.log(b)
-   console.log(c)
-   console.log(d)
+   console.log(a)  // '甲'
+   console.log(b)  // '乙'
+   console.log(c)	// '丙'
+   console.log(d)  // '丁'
    ```
 
 2. ```javascript
@@ -211,9 +211,9 @@ ES11
      hobby: 'football'
    }
    const { name, age, hobby } = PERSON
-   console.log(name)
-   console.log(age)
-   console.log(hobby)
+   console.log(name)  // 'zhishouh'
+   console.log(age)   // 19
+   console.log(hobby) // 'football'
    ```
 
 
@@ -223,7 +223,7 @@ ES11
 1. ```javascript
    声明
    const NAME = 'ZHISHOUH'
-   console.log(NAME)
+   console.log(NAME)  // 'ZHISHOUH'
    ```
 
 2. ```javascript
@@ -233,15 +233,19 @@ ES11
                    <li>2</li>
                    <li>3</li>
                  </ul>`
-   console.log(TEST)
+   console.log(TEST)	// <ul>
+                   	// 		<li>1</li>
+                   	//		<li>2</li>
+                   	//		<li>3</li>
+                 		// </ul>
    ```
-
+   
 3. ```javascript
    变量拼接
    const NAME = 'zhishouh'
    const AGE = 19
    const content = `${NAME}--${AGE}`
-   console.log(content)
+   console.log(content) // 'zhishouh--19'
    
    ```
 
@@ -285,8 +289,9 @@ console.log(result)
      console.log(this.name)
    }
    window.name = 'zhishouh'
+   
    const test = {
-     name: 'zhishou'
+     name: 'zhishouh'
    }
    
    直接调用
@@ -298,7 +303,7 @@ console.log(result)
    getName2.call(test)
    
    ```
-
+   
 2. ```javascript
    不能作为构造函数
    const Person = (name, age) => {
@@ -307,7 +312,7 @@ console.log(result)
    }
    const P = new Person('黄', 19)
    
-   console.log(P)
+   console.log(P)  // error
    ```
 
 3. ```javascript
@@ -315,12 +320,12 @@ console.log(result)
    function a () {
      console.log(arguments)
    }
-   a(1, 2, 3)
+   a(1, 2, 3)  // 1,2,3
    
    const fn = () => {
      console.log(arguments)
    }
-   fn(1, 2, 3)
+   fn(1, 2, 3) // error
    ```
 
 4. ```javascript
@@ -340,7 +345,7 @@ console.log(result)
    function fn (a, b, c = 10) {
      return a + b + c
    }
-   console.log(fn(1, 2))
+   console.log(fn(1, 2))  // 13
    ```
 
    
@@ -398,28 +403,28 @@ fn(...arr) // [Arguments] { '0': 'H', '1': 'T', '2': 'T', '3': 'P' }
    const arr1 = [1, 2, 3]
    const arr2 = [4, 5, 6]
    const arr = [...arr1, ...arr2]
-   console.log(arr)
+   console.log(arr) // [1,2,3,4,5,6]
    ```
 
 2. ```javascript
    数组的克隆
    const arr1 = [1, 2, 3]
    const arr2 = [...arr1]
-   console.log(arr2)
+   console.log(arr2) [1,2,3]
    ```
 
 3. ```javascript
-   将伪数组转化为正数组
+   将伪数组转化为正数组--获取的节点
    ```
 
 
 
-#####  <span id="ES6-10">Symbol--原始数据类型</span>
+#####  <span id="ES6-10">Symbol--原始数据类型--表示独一无二的值</span>
 
 1. ```javascript
    创建symbol
    const s = Symbol('z')
-   console.log(s)
+   console.log(s)  // Symbol(z)
    
    const s1 = Symbol('Z')
    const s2 = Symbol('Z')
@@ -641,10 +646,10 @@ const s = new Set()
 console.log(s, typeof s)
 
 const s2 = new Set([1, 2, 3, 4, 5, 6, 1, 2])
-console.log(s2)
+console.log(s2) // [1, 2, 3, 4, 5, 6]
 
 // 元素个数
-console.log(s2.size)
+console.log(s2.size) // 6
 
 // 添加元素
 s2.add(7)
@@ -852,7 +857,6 @@ const place = {
 }
 Object.setPrototypeOf(gd, place)
 console.log(gd.places)
-
 ```
 
 
@@ -953,7 +957,6 @@ main()
 #####  <span id="ES8-2">async与await读取多个文件</span>
 
 ```javascript
-
 // 引入fs模块
 const fs = require('fs')
 
